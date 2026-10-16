@@ -1,0 +1,10 @@
+# 课堂笔记助手 · 桌面链路依赖
+# 注意：torch 必须显式列出。funasr 只是 import torch，不会自动装上，
+#      漏了它转录会在 AutoModel() 处直接抛 ModuleNotFoundError。
+funasr>=1.1.0
+torch>=2.0.0
+numpy>=1.24.0
+xlrd>=2.0.1
+openai>=1.30.0
+notion-client>=2.2.0
+python-dotenv>=1.0.0

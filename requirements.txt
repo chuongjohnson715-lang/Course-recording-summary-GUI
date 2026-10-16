@@ -1,0 +1,32 @@
+# ============================================================
+#  课堂笔记助手 · 全项目依赖（根目录）
+#  ------------------------------------------------------------
+#  安装：
+#      python -m venv .venv --system-site-packages
+#      .venv\Scripts\python.exe -m pip install -r requirements.txt
+#
+#  说明：
+#    * torch 必须显式列出。funasr 只在内部 import torch，不会自动
+#      装它；漏掉的话转录会在 AutoModel() 处抛 ModuleNotFoundError。
+#    * PyYAML 供 config/settings.py 读取 settings.yaml。缺失时程序
+#      会回落到内置默认值（不会崩），但配置就不生效了，所以必须显式声明。
+#    * tkinter 不在 pip 里（随 Python 发行版提供）；用 conda/官方安装包
+#      的 Python 一般都自带。若桌面程序报 No module named 'tkinter'，
+#      请换用官方 python.org 安装包重装 Python。
+# ============================================================
+
+# ---- 转录（SenseVoice / FunASR）----
+funasr>=1.1.0
+torch>=2.0.0
+numpy>=1.24.0
+
+# ---- 配置与课表解析 ----
+PyYAML>=6.0
+xlrd>=2.0.1
+
+# ---- LLM 清洗/分析（DeepSeek，OpenAI 兼容接口）----
+openai>=1.30.0
+python-dotenv>=1.0.0
+
+# ---- Notion 归档（可选功能）----
+notion-client>=2.2.0

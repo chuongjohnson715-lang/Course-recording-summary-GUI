@@ -1,0 +1,41 @@
+# ============================================================
+#  课堂笔记助手 · 业务参数（全项目唯一真源）
+#  改这里的值，命令行入口与桌面程序同时生效。
+#  路径不在本文件里 —— 见 config/paths.py
+# ============================================================
+
+semester:
+  # 开学日（周一，即课表「第 1 周」的起始）。换学期只改这一行。
+  start: "2026-08-31"
+
+schedule:
+  # 录音时间与课程时段的最大允许差距（分钟），超过则视为没匹配上
+  max_gap_minutes: 45
+
+transcribe:
+  # SenseVoice 分段时长（秒），过大易 OOM，过小会丢上下文
+  segment_sec: 15
+  sample_rate: 16000
+  model: "iic/SenseVoiceSmall"
+  language: "zh"
+  use_itn: true
+  # 输出文件名后缀
+  suffix: "_sensevoice"
+  # ffmpeg 可执行文件；留空则使用 PATH 中的 ffmpeg
+  ffmpeg: ""
+
+watch:
+  poll_interval_sec: 1.0      # 轮询间隔
+  stable_seconds: 3           # 文件大小连续不变多少秒判定复制完成
+  min_file_size: 1024         # 小于该字节数视为无效
+  # 启动时已在 sounds/ 的文件是否自动纳入处理队列
+  # （解决 C-14：旧行为是「视为已处理」，导致先拷文件再启动就永远漏处理）
+  process_existing_on_start: true
+
+retry:
+  # 解决 C-11：瞬时故障（网络抖动/Notion 限流）自动重试次数与间隔
+  max_attempts: 3
+  delay_seconds: 5
+  backoff: 2.0
+
+audio_exts: [".m4a", ".mp3", ".wav", ".flac", ".aac", ".ogg", ".wma"]
